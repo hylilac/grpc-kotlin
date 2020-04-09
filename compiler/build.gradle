@@ -12,6 +12,7 @@ plugins {
     id 'application'
     id 'maven-publish'
 
+    // Plugins for building the jar into an executable for protoc.
     id 'edu.sc.seis.launch4j' version '2.4.4'
     id 'com.github.johnrengelman.shadow' version '4.0.2'
 }
@@ -102,6 +103,8 @@ publishing {
             // Removes all artifacts since grpc-kotlin-compiler doesn't generate any
             artifacts = []
             artifactId 'protoc-gen-grpc-kotlin'
+
+            // These artifacts are "exe" for compatibility with gradle-protoc-plugin
             artifact("$buildDir/artifacts/protoc-gen-grpc-kotlin" as File) {
                 classifier "osx-x86_64"
                 extension "exe"
